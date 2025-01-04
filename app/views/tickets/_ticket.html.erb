@@ -25,6 +25,15 @@
     <%= ticket.quantity %>
   </p>
 
-  <%= link_to "Link to Event", ticket.event %>
+  <p>
+    <strong>Status:</strong>
+    <%= ticket.status.humanize %>
+  </p>
 
+  <%= link_to "Link to Event", ticket.event, class: 'btn btn-sm btn-primary' %>
+  <% if ticket.active? %>
+    <div class='d-inline-block'>
+      <%= button_to "Cancel Ticket", cancel_ticket_path(ticket), method: :post, class: 'btn btn-sm btn-dark' %>
+    </div>
+  <% end %>
 </div>

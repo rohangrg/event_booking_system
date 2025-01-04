@@ -33,7 +33,7 @@
   <p>
     <strong>Available tickets:</strong>
     <!--  just to show query is not getting called when cached -->
-    <%= (event.total_tickets - event.tickets.sum(:quantity)) || event.available_tickets %>
+    <%= event.remaining_tickets || event.available_tickets %>
   </p>
   
 </div>

@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_ticket, only: %i[ show ]
+  before_action :set_ticket, only: %i[ show cancel ]
 
   def index
     @tickets = current_user.tickets.order("id desc")
@@ -25,9 +25,21 @@ class TicketsController < ApplicationController
     end
   end
 
+  def cancel
+    respond_to do |format|
+      if @ticket.cancelled!
+        format.html { redirect_to tickets_path, notice: "Ticket was successfully created." }
+        format.json { render :show, status: :created, location: @ticket }
+      else
+        format.html { redirect_to event, alert: @ticket.errors.full_messages.join(', ') }
+        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     def set_ticket
-      @ticket = Ticket.find(params[:id])
+      @ticket = current_user.tickets.find(params[:id])
     end
 
     def ticket_params
