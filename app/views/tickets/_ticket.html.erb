@@ -1,0 +1,30 @@
+<div id="<%= dom_id ticket %>">
+
+  <p>
+    <strong>ID:</strong>
+    <%= ticket.id %>
+  </p>
+
+  <p>
+    <strong>Event Name:</strong>
+    <%= ticket.event.name %>
+  </p>
+
+  <p>
+    <strong>Event Location:</strong>
+    <%= ticket.event.location %>
+  </p>
+
+  <p>
+    <strong>Event Start Time:</strong>
+    <%= ticket.event.event_start_time %>
+  </p>
+
+  <p>
+    <strong>Quantity:</strong>
+    <%= ticket.quantity %>
+  </p>
+
+  <%= link_to "Link to Event", ticket.event %>
+
+</div>

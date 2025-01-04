@@ -1,0 +1,21 @@
+<p class="text-success"><%= notice %></p>
+
+<div class='d-flex w-100 justify-content-between'>
+  <h1><%= request.path == my_events_path ? 'My ' : '' %>Events</h1>
+  <% if request.path == my_events_path %>
+    <%= link_to "New event", new_event_path, class: "btn btn-primary btn-sm mb-4" %>
+<% end %>
+</div>
+
+<div id="events">
+  <% @events.each do |event| %>
+    <div class="mb-3 p-3 border">
+      <% cache event do %>
+        <%= render event %>
+      <% end %>
+      <p>
+        <%= link_to "Show this event", event, class: "btn btn-outline-primary btn-sm" %>
+      </p>
+    </div>
+  <% end %>
+</div>
