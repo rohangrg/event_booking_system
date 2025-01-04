@@ -24,6 +24,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    redirect_to @event if @event.user_id != current_user.id
   end
 
   # POST /events or /events.json
@@ -43,6 +44,8 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1 or /events/1.json
   def update
+    redirect_to @event if @event.user_id != current_user.id
+
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: "Event was successfully updated." }
