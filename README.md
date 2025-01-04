@@ -30,7 +30,7 @@ git clone https://github.com/yourusername/event_booking_system.git
 cd event_booking_system
 ```
 
-### 2. Run the fllowing commands
+### 2. Run the following commands
 
 ```bash
 bundle install
